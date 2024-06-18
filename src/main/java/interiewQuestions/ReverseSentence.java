@@ -1,29 +1,27 @@
-package lambdaExpressionsPractice;
+package interiewQuestions;
 
-import java.util.*;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-
-public class SupplierLambda {
+public class ReverseSentence {
+    /*
+    Write a code that will reverse sentence. String str=”String is immutable”; output: “immutable is String“;
+     */
 
     public static void main(String[] args) {
+        String str="String is immutable";
+        System.out.println(reverseSentence(str));
 
-        //generates Random integer value
-        Supplier<Integer> generateRandomNumber = () -> {
-            Random random = new Random();
-            return random.nextInt();
-        };
 
-        System.out.println(generateRandomNumber.get());
 
-        //generates Random String value
-        Supplier<String> generateRandomStr = () -> {
-            String str = UUID.randomUUID().toString();
-            return str;
-        };
-        System.out.println(generateRandomStr.get());
     }
 
+    public static String reverseSentence(String str){
+        String[] split = str.split(" ");
+        StringBuilder stb = new StringBuilder();
+
+        for (int i = split.length-1; i >= 0 ; i--) {
+            stb.append(split[i]).append(" ");
+        }
+        return stb.toString().trim();
+    }
 //    public static String reverseWords(String sentence) {
 //        // Split the sentence into words
 //        List<String> words = Arrays.asList(sentence.split(" "));
@@ -39,4 +37,5 @@ public class SupplierLambda {
 //        // Return the reversed sentence
 //        return reversed;
 //    }
+
 }
