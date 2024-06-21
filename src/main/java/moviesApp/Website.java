@@ -17,25 +17,24 @@ public class Website {
         System.out.println("###################################################################################");
         print(movies1);
 
-        // Via scanner ask user give  amenu
+        // Via scanner ask user give a menu
         // 1. search by genre
         // 2. Director
         // 3. Year
         // 4. for children
         // after they type number ex: 1 -> then ask what genre
-        // after they give genre type display all genre they looking for
-
+        // after they give genre type display all genre they are looking for
 
     }
 
-    private static List<Movie> searchByDirectorName(String director) {
+    public static List<Movie> searchByDirectorName(String director) {
 
         return Database.provide().stream()
                 .filter(m -> m.getDirector().contains(director))
                 .collect(Collectors.toList());
     }
 
-    private static void print(List<Movie> movies){
+    public static void print(List<Movie> movies){
 //        int num = 1;
 //        for(Movie m : movies){
 //            System.out.println(num + ") " +m);
@@ -46,7 +45,7 @@ public class Website {
                 .forEach(i -> System.out.println((i + 1) + ") " + movies.get(i)));
     }
 
-    private static List<Movie> searchByGenre(String genre){
+    public static List<Movie> searchByGenre(String genre){
 //        List<Movie> list = new ArrayList<>();
 //        for (Movie m : Database.provide()) if(m.getGenre().equalsIgnoreCase(genre)) list.add(m);
 //        return list;
@@ -57,5 +56,18 @@ public class Website {
                 .collect(Collectors.toList());
     }
 
+    public static List<Movie> searchByYear(int startYear, int endYear){
+
+        return Database.provide().stream()
+                .filter(movie -> movie.getReleaseYear() >= startYear && movie.getReleaseYear() <= endYear)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Movie> searchMoviesForChildren() {
+
+        return Database.provide().stream()
+                .filter(Movie::isForChildren)
+                .collect(Collectors.toList());
+    }
 
 }
